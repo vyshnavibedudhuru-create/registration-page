@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Register</h2>
+
+  <form id="registerForm">
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+    <p class="error" id="errorMsg"></p>
+
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById("registerForm");
+  const errorMsg = document.getElementById("errorMsg");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+      errorMsg.textContent = "Passwords do not match!";
+      return;
+    }
+
+    if (password.length < 6) {
+      errorMsg.textContent = "Password must be at least 6 characters!";
+      return;
+    }
+
+    errorMsg.textContent = "";
+
+    alert("Registration Successful!");
+    
+    // Here you can send data to backend using fetch()
+  });
+</script>
+
+</body>
+</html>
